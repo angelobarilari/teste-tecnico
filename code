@@ -1,0 +1,100 @@
+function sum() {
+  const INDICE = 13
+  let SOMA = 0
+  let K = 0
+
+  while (K < INDICE) {
+    K += 1
+    SOMA += K;
+  }
+  
+  console.log(`O resultado da pergunta 1) é ${SOMA}`)
+}
+
+sum()
+
+function fibonacci(number){
+  let fibonacci = [0, 1];
+  for (let i = 2; i < number; i++) 
+    fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+  
+  const isFibonacciNumber = 
+    fibonacci
+      .some(element => element === number)
+  
+  if (isFibonacciNumber)
+    console.log("Este número pertence a sequência de Fibonacci")
+  else 
+    console.log("Este número NÃO pertence a sequência de Fibonacci")
+  }
+
+fibonacci(14)
+
+function calculator() {
+  const values = []
+  let counter = 0
+  db.map(element => {
+    if (element.valor > 0) {
+      counter += 1
+      values.push(Number(element.valor))
+    }
+  })
+  
+  const lowerValue = Math.min.apply(Math, values)
+  const maxValue = Math.max.apply(Math, values)
+  const sumTotal = values.reduce((a, b) => a + b)
+  const media = sumTotal / counter
+
+  console.log(`O menor valor de faturamento ocorrido em um dia do mês é de ${lowerValue}`)
+  console.log(`O maior valor de faturamento ocorrido em um dia do mês é de ${maxValue}`)
+  console.log(`A média de faturamento é de ${media}`)
+}
+
+calculator()
+
+function billing() {
+  const myDatabase = {
+    SP: "R$67.836,43",
+    RJ: "R$36.678,66",
+    MG: "R$29.229,88",
+    ES: "R$27.165,48",
+    Outros: "R$19.849,53"
+  }
+
+  let values = Object.values(myDatabase)
+  let preFormatedValues = []
+  
+  values.forEach(element => {
+    preFormatedValues
+      .push(element.slice(2))
+  })
+
+  let formatedValues = preFormatedValues
+    .map(element => parseFloat(element.replace(/\./g, '')
+    .replace(',', '.')))
+  
+  const sum = formatedValues.reduce((a, b) => a + b)
+
+  const percentagesArr = []
+  formatedValues
+    .map(element => 
+      percentagesArr.push(`${(element * 100 / sum).toFixed(2)}%`)
+    )
+
+  return percentagesArr
+}
+
+console.log(billing())
+
+function reverse(str){
+  return str
+    .split(' ')
+    .map(element => {    
+        return element
+        .split('')
+        .reverse()
+        .join('')
+    }).join(' ')
+}
+
+console.log(reverse("Uma string qualquer"))
